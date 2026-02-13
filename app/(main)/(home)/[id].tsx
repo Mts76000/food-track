@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Alert,
   Image,
@@ -11,6 +11,8 @@ import {
   View,
 } from "react-native";
 
+import { NutritionSummary } from "@/components/nutrition-summary";
+import { colors } from "@/constants/theme";
 import type { Meal } from "@/types";
 import { calculateFoodNutrition, calculateMealTotals } from "@/utils/nutrition";
 import { getMeals, saveMeals } from "@/utils/storage";
@@ -20,15 +22,15 @@ export default function MealDetailsScreen() {
   const router = useRouter();
   const [meal, setMeal] = useState<Meal | null>(null);
 
-  useEffect(() => {
-    loadMeal();
-  }, [id]);
-
-  const loadMeal = async () => {
+  const loadMeal = useCallback(async () => {
     const meals = await getMeals();
     const foundMeal = meals.find((m: Meal) => m.id === id);
     setMeal(foundMeal || null);
-  };
+  }, [id]);
+
+  useEffect(() => {
+    loadMeal();
+  }, [loadMeal]);
 
   const handleDeleteMeal = () => {
     Alert.alert(
@@ -78,31 +80,12 @@ export default function MealDetailsScreen() {
 
       <View style={styles.summaryCard}>
         <Text style={styles.summaryTitle}>Apports nutritionnels</Text>
-        <View style={styles.summaryGrid}>
-          <View style={styles.summaryItem}>
-            <Text style={styles.summaryValue}>
-              {Math.round(totals.calories)}
-            </Text>
-            <Text style={styles.summaryLabel}>kcal</Text>
-          </View>
-          <View style={styles.summaryDivider} />
-          <View style={styles.summaryItem}>
-            <Text style={styles.summaryValue}>
-              {totals.proteins.toFixed(1)}g
-            </Text>
-            <Text style={styles.summaryLabel}>Protéines</Text>
-          </View>
-          <View style={styles.summaryDivider} />
-          <View style={styles.summaryItem}>
-            <Text style={styles.summaryValue}>{totals.carbs.toFixed(1)}g</Text>
-            <Text style={styles.summaryLabel}>Glucides</Text>
-          </View>
-          <View style={styles.summaryDivider} />
-          <View style={styles.summaryItem}>
-            <Text style={styles.summaryValue}>{totals.fats.toFixed(1)}g</Text>
-            <Text style={styles.summaryLabel}>Lipides</Text>
-          </View>
-        </View>
+        <NutritionSummary
+          totals={totals}
+          valueColor={colors.primary}
+          valueSize={20}
+          dividerHeight={40}
+        />
       </View>
 
       <View style={styles.foodsSection}>
@@ -232,30 +215,6 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#333",
     marginBottom: 16,
-  },
-  summaryGrid: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  summaryItem: {
-    flex: 1,
-    alignItems: "center",
-  },
-  summaryDivider: {
-    width: 1,
-    height: 40,
-    backgroundColor: "#e0e0e0",
-  },
-  summaryValue: {
-    fontSize: 20,
-    fontWeight: "700",
-    color: "#4caf50",
-    marginBottom: 4,
-  },
-  summaryLabel: {
-    fontSize: 12,
-    color: "#666",
   },
   foodsSection: {
     gap: 12,

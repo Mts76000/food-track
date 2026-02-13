@@ -18,7 +18,7 @@ export type Meal = {
   foods: Food[];
 };
 
-export type MealType = "breakfast" | "lunch" | "dinner" | "snack";
+export type MealType = "Petit-déjeuner" | "Déjeuner" | "Dîner" | "Snack";
 
 export type NutritionTotals = {
   calories: number;

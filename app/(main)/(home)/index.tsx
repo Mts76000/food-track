@@ -3,6 +3,7 @@ import { Link, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 
+import { NutritionSummary } from "@/components/nutrition-summary";
 import type { Meal } from "@/types";
 import { formatDateDisplay, formatDateISO, isSameDay } from "@/utils/date";
 import { calculateDailyTotals, calculateMealTotals } from "@/utils/nutrition";
@@ -73,29 +74,7 @@ export default function HomeScreen() {
 
       {filteredMeals.length > 0 && (
         <View style={styles.summary}>
-          <View style={styles.summaryItem}>
-            <Text style={styles.summaryValue}>
-              {Math.round(totals.calories)}
-            </Text>
-            <Text style={styles.summaryLabel}>kcal</Text>
-          </View>
-          <View style={styles.summaryDivider} />
-          <View style={styles.summaryItem}>
-            <Text style={styles.summaryValue}>
-              {totals.proteins.toFixed(1)}g
-            </Text>
-            <Text style={styles.summaryLabel}>Protéines</Text>
-          </View>
-          <View style={styles.summaryDivider} />
-          <View style={styles.summaryItem}>
-            <Text style={styles.summaryValue}>{totals.carbs.toFixed(1)}g</Text>
-            <Text style={styles.summaryLabel}>Glucides</Text>
-          </View>
-          <View style={styles.summaryDivider} />
-          <View style={styles.summaryItem}>
-            <Text style={styles.summaryValue}>{totals.fats.toFixed(1)}g</Text>
-            <Text style={styles.summaryLabel}>Lipides</Text>
-          </View>
+          <NutritionSummary totals={totals} />
         </View>
       )}
 
@@ -193,9 +172,6 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
   },
   summary: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
     backgroundColor: "#fff",
     padding: 16,
     marginHorizontal: 16,
@@ -206,25 +182,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 2,
-  },
-  summaryItem: {
-    alignItems: "center",
-    flex: 1,
-  },
-  summaryValue: {
-    fontSize: 18,
-    fontWeight: "700",
-    color: "#333",
-  },
-  summaryLabel: {
-    fontSize: 11,
-    color: "#666",
-    marginTop: 2,
-  },
-  summaryDivider: {
-    width: 1,
-    height: 30,
-    backgroundColor: "#e0e0e0",
   },
   goalCard: {
     backgroundColor: "#fff",

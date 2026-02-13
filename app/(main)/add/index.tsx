@@ -17,7 +17,7 @@ import {
 } from "react-native";
 
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
-import type { Food, Meal } from "@/types";
+import type { Food, Meal, MealType } from "@/types";
 import { searchProducts } from "@/utils/api";
 import { formatDateISO } from "@/utils/date";
 import { calculateFoodNutrition } from "@/utils/nutrition";
@@ -28,8 +28,6 @@ import {
   saveCurrentMealFoods,
   saveMeals,
 } from "@/utils/storage";
-
-type MealType = "Petit-déjeuner" | "Déjeuner" | "Dîner" | "Snack";
 
 const MEAL_TYPES: MealType[] = ["Petit-déjeuner", "Déjeuner", "Dîner", "Snack"];
 
@@ -541,24 +539,12 @@ const styles = StyleSheet.create({
   },
   resultsList: {
     gap: 10,
-    paddingBottom: 16,
-    paddingHorizontal: 16,
-    paddingTop: 16,
+    padding: 16,
     backgroundColor: "#fff",
     borderRadius: 12,
-    marginHorizontal: 16,
   },
   resultsOverlay: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "transparent",
-    zIndex: 999,
-    justifyContent: "flex-start",
-    paddingTop: 325,
-    pointerEvents: "box-none",
+    marginTop: 8,
   },
   resultCard: {
     flexDirection: "row",

@@ -11,6 +11,7 @@ import {
   View,
 } from "react-native";
 
+import { cardShadow, colors, radius, spacing } from "@/constants/theme";
 import { getCalorieGoal, saveCalorieGoal } from "@/utils/storage";
 
 export default function ProfileScreen() {
@@ -86,76 +87,68 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: colors.background,
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 16,
+    paddingHorizontal: spacing.md,
   },
   avatarContainer: {
-    marginBottom: 32,
+    marginBottom: spacing.xl,
   },
   avatar: {
     width: 100,
     height: 100,
     borderRadius: 50,
-    backgroundColor: "#4caf50",
+    backgroundColor: colors.primary,
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    ...cardShadow,
   },
   infoCard: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.card,
     width: "100%",
     padding: 20,
-    borderRadius: 12,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
-    marginBottom: 32,
+    borderRadius: radius.md,
+    ...cardShadow,
+    marginBottom: spacing.xl,
   },
   label: {
     fontSize: 12,
-    color: "#666",
-    marginBottom: 8,
+    color: colors.textSecondary,
+    marginBottom: spacing.sm,
     textTransform: "uppercase",
     letterSpacing: 0.5,
   },
   email: {
     fontSize: 16,
-    color: "#333",
+    color: colors.text,
     fontWeight: "500",
   },
   goalRow: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: spacing.sm,
     marginBottom: 12,
   },
   goalInput: {
     flex: 1,
     borderWidth: 1,
-    borderColor: "#e0e0e0",
-    borderRadius: 8,
+    borderColor: colors.border,
+    borderRadius: radius.sm,
     paddingVertical: 10,
     paddingHorizontal: 12,
     fontSize: 16,
-    color: "#333",
-    backgroundColor: "#fff",
+    color: colors.text,
+    backgroundColor: colors.card,
   },
   goalUnit: {
     fontSize: 14,
-    color: "#666",
+    color: colors.textSecondary,
   },
   goalButton: {
-    backgroundColor: "#4caf50",
+    backgroundColor: colors.primary,
     paddingVertical: 10,
-    borderRadius: 8,
+    borderRadius: radius.sm,
     alignItems: "center",
   },
   goalButtonText: {
@@ -166,7 +159,7 @@ const styles = StyleSheet.create({
   goalSavedText: {
     marginTop: 10,
     fontSize: 13,
-    color: "#4caf50",
+    color: colors.primary,
     textAlign: "center",
     fontWeight: "600",
   },
