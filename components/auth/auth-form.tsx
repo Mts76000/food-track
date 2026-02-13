@@ -1,6 +1,8 @@
 import { Link } from "expo-router";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
+import { colors, radius } from "@/constants/theme";
+
 type AuthFormProps = {
   title: string;
   email: string;
@@ -122,12 +124,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: "700",
-    color: "#4caf50",
+    color: colors.primary,
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 16,
-    color: "#666",
+    color: colors.textSecondary,
   },
   form: {
     paddingHorizontal: 32,
@@ -135,22 +137,22 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 14,
-    color: "#666",
+    color: colors.textSecondary,
     textAlign: "center",
     marginBottom: 8,
   },
   input: {
     borderWidth: 1,
-    borderColor: "#e0e0e0",
-    borderRadius: 8,
+    borderColor: colors.border,
+    borderRadius: radius.sm,
     padding: 14,
     fontSize: 16,
-    backgroundColor: "#fff",
+    backgroundColor: colors.card,
   },
   button: {
-    backgroundColor: "#4caf50",
+    backgroundColor: colors.primary,
     paddingVertical: 14,
-    borderRadius: 8,
+    borderRadius: radius.sm,
     alignItems: "center",
     marginTop: 8,
   },
@@ -173,15 +175,15 @@ const styles = StyleSheet.create({
   },
   linkText: {
     fontSize: 14,
-    color: "#666",
+    color: colors.textSecondary,
   },
   link: {
     fontSize: 14,
-    color: "#4caf50",
+    color: colors.primary,
     fontWeight: "600",
   },
   errorText: {
-    color: "#f44336",
+    color: colors.danger,
     fontSize: 14,
     marginTop: -8,
   },

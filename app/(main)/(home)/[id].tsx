@@ -12,7 +12,7 @@ import {
 } from "react-native";
 
 import { NutritionSummary } from "@/components/nutrition-summary";
-import { colors } from "@/constants/theme";
+import { cardShadow, colors, radius, spacing } from "@/constants/theme";
 import type { Meal } from "@/types";
 import { calculateFoodNutrition, calculateMealTotals } from "@/utils/nutrition";
 import { getMeals, saveMeals } from "@/utils/storage";
@@ -164,22 +164,18 @@ export default function MealDetailsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: colors.background,
   },
   content: {
-    padding: 16,
+    padding: spacing.md,
     paddingBottom: 32,
   },
   header: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.card,
     padding: 20,
-    borderRadius: 12,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
-    marginBottom: 16,
+    borderRadius: radius.md,
+    ...cardShadow,
+    marginBottom: spacing.md,
   },
   headerTop: {
     flexDirection: "row",
@@ -189,32 +185,28 @@ const styles = StyleSheet.create({
   mealName: {
     fontSize: 22,
     fontWeight: "700",
-    color: "#333",
+    color: colors.text,
     marginBottom: 4,
   },
   mealDate: {
     fontSize: 14,
-    color: "#666",
+    color: colors.textSecondary,
   },
   deleteIconButton: {
     padding: 4,
   },
   summaryCard: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
+    backgroundColor: colors.card,
+    borderRadius: radius.md,
     padding: 20,
-    marginBottom: 16,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
+    marginBottom: spacing.md,
+    ...cardShadow,
   },
   summaryTitle: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#333",
-    marginBottom: 16,
+    color: colors.text,
+    marginBottom: spacing.md,
   },
   foodsSection: {
     gap: 12,
@@ -222,12 +214,12 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#333",
-    marginBottom: 8,
+    color: colors.text,
+    marginBottom: spacing.sm,
   },
   foodCard: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
+    backgroundColor: colors.card,
+    borderRadius: radius.md,
     padding: 12,
     flexDirection: "row",
     gap: 12,
@@ -240,10 +232,10 @@ const styles = StyleSheet.create({
   foodImage: {
     width: 70,
     height: 70,
-    borderRadius: 8,
+    borderRadius: radius.sm,
   },
   foodImagePlaceholder: {
-    backgroundColor: "#f5f5f5",
+    backgroundColor: colors.background,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -252,21 +244,21 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   foodHeader: {
-    marginBottom: 8,
+    marginBottom: spacing.sm,
   },
   foodName: {
     fontSize: 15,
     fontWeight: "600",
-    color: "#333",
+    color: colors.text,
     marginBottom: 2,
   },
   foodBrand: {
     fontSize: 13,
-    color: "#999",
+    color: colors.textMuted,
   },
   foodQuantity: {
     fontSize: 12,
-    color: "#666",
+    color: colors.textSecondary,
     marginTop: 4,
   },
   foodNutrition: {
@@ -279,15 +271,15 @@ const styles = StyleSheet.create({
   nutriValue: {
     fontSize: 14,
     fontWeight: "600",
-    color: "#333",
+    color: colors.text,
   },
   nutriLabel: {
     fontSize: 11,
-    color: "#999",
+    color: colors.textMuted,
   },
   emptyText: {
     fontSize: 16,
-    color: "#666",
+    color: colors.textSecondary,
     textAlign: "center",
     marginTop: 32,
   },

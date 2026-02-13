@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { NutritionSummary } from "@/components/nutrition-summary";
+import { cardShadow, colors, radius, spacing } from "@/constants/theme";
 import type { Meal } from "@/types";
 import { formatDateDisplay, formatDateISO, isSameDay } from "@/utils/date";
 import { calculateDailyTotals, calculateMealTotals } from "@/utils/nutrition";
@@ -51,11 +52,15 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <View style={styles.dateSelector}>
         <Pressable style={styles.dateArrow} onPress={() => changeDate(-1)}>
-          <Ionicons name="chevron-back" size={24} color="#4caf50" />
+          <Ionicons name="chevron-back" size={24} color={colors.primary} />
         </Pressable>
 
         <View style={styles.dateDisplay}>
-          <Ionicons name="calendar-outline" size={18} color="#666" />
+          <Ionicons
+            name="calendar-outline"
+            size={18}
+            color={colors.textSecondary}
+          />
           <Text style={styles.dateText}>{formatDateDisplay(selectedDate)}</Text>
         </View>
 
@@ -67,7 +72,7 @@ export default function HomeScreen() {
           <Ionicons
             name="chevron-forward"
             size={24}
-            color={isToday ? "#ccc" : "#4caf50"}
+            color={isToday ? "#ccc" : colors.primary}
           />
         </Pressable>
       </View>
@@ -141,19 +146,19 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: colors.background,
   },
   dateSelector: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: 16,
-    backgroundColor: "#fff",
+    padding: spacing.md,
+    backgroundColor: colors.card,
     borderBottomWidth: 1,
-    borderBottomColor: "#e0e0e0",
+    borderBottomColor: colors.border,
   },
   dateArrow: {
-    padding: 8,
+    padding: spacing.sm,
   },
   dateArrowDisabled: {
     opacity: 0.3,
@@ -163,37 +168,29 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: 8,
+    gap: spacing.sm,
   },
   dateText: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#333",
+    color: colors.text,
     textTransform: "capitalize",
   },
   summary: {
-    backgroundColor: "#fff",
-    padding: 16,
-    marginHorizontal: 16,
-    marginTop: 16,
-    borderRadius: 12,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
+    backgroundColor: colors.card,
+    padding: spacing.md,
+    marginHorizontal: spacing.md,
+    marginTop: spacing.md,
+    borderRadius: radius.md,
+    ...cardShadow,
   },
   goalCard: {
-    backgroundColor: "#fff",
-    marginHorizontal: 16,
+    backgroundColor: colors.card,
+    marginHorizontal: spacing.md,
     marginTop: 12,
-    padding: 16,
-    borderRadius: 12,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
+    padding: spacing.md,
+    borderRadius: radius.md,
+    ...cardShadow,
   },
   goalHeader: {
     flexDirection: "row",
@@ -204,59 +201,55 @@ const styles = StyleSheet.create({
   goalTitle: {
     fontSize: 14,
     fontWeight: "600",
-    color: "#333",
+    color: colors.text,
   },
   goalValue: {
     fontSize: 13,
-    color: "#666",
+    color: colors.textSecondary,
   },
   goalBar: {
     height: 10,
-    backgroundColor: "#eaeaea",
-    borderRadius: 999,
+    backgroundColor: colors.divider,
+    borderRadius: radius.full,
     overflow: "hidden",
   },
   goalProgress: {
     height: "100%",
-    backgroundColor: "#4caf50",
+    backgroundColor: colors.primary,
   },
   middle: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    gap: 8,
-    padding: 16,
+    gap: spacing.sm,
+    padding: spacing.md,
   },
   emptyTitle: {
     fontWeight: "600",
     fontSize: 18,
-    color: "#333",
+    color: colors.text,
   },
   emptyText: {
-    color: "#666",
+    color: colors.textSecondary,
     textAlign: "center",
   },
   list: {
     gap: 12,
     paddingBottom: 80,
-    paddingHorizontal: 16,
-    paddingTop: 16,
+    paddingHorizontal: spacing.md,
+    paddingTop: spacing.md,
   },
   mealCard: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    padding: 16,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
+    backgroundColor: colors.card,
+    borderRadius: radius.md,
+    padding: spacing.md,
+    ...cardShadow,
   },
   mealHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 8,
+    marginBottom: spacing.sm,
   },
   mealName: {
     fontSize: 18,
@@ -264,11 +257,11 @@ const styles = StyleSheet.create({
   },
   mealDate: {
     fontSize: 14,
-    color: "#666",
+    color: colors.textSecondary,
   },
   mealCalories: {
     fontSize: 14,
-    color: "#666",
+    color: colors.textSecondary,
   },
   fab: {
     position: "absolute",
@@ -277,7 +270,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: "#4caf50",
+    backgroundColor: colors.primary,
     justifyContent: "center",
     alignItems: "center",
     shadowColor: "#000",

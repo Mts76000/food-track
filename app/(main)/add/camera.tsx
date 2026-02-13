@@ -13,6 +13,7 @@ import {
   View,
 } from "react-native";
 
+import { colors } from "@/constants/theme";
 import type { Food } from "@/types";
 import { getProductByBarcode } from "@/utils/api";
 
@@ -215,7 +216,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   button: {
-    backgroundColor: "#4caf50",
+    backgroundColor: colors.primary,
     paddingVertical: 12,
     borderRadius: 10,
     alignItems: "center",
@@ -239,7 +240,7 @@ const styles = StyleSheet.create({
     marginTop: -60,
     marginLeft: -150,
     borderWidth: 3,
-    borderColor: "#4caf50",
+    borderColor: colors.primary,
     borderRadius: 12,
     backgroundColor: "transparent",
   },
@@ -264,7 +265,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   permissionButton: {
-    backgroundColor: "#4caf50",
+    backgroundColor: colors.primary,
     paddingVertical: 14,
     paddingHorizontal: 32,
     borderRadius: 8,
